@@ -30,6 +30,7 @@ const DUMMY_MEALS = [
 ];
 
 const AvailableMeals = () => {
+  // const inputRef = useRef();
   const mealsList = DUMMY_MEALS.map((meal) => (
     <MealItem
       key={meal.id}
@@ -40,9 +41,19 @@ const AvailableMeals = () => {
     />
   ));
 
+  function fetchMoviesHandler() {
+    fetch("https://swapi.dev/api/films")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => console.log(data));
+  }
+
   return (
     <section className={classes.meals}>
       <Card>
+        {/* <input type="text" ref={inputRef} onChange={searchHandler}></input> */}
+        <button onClick={fetchMoviesHandler}>Fetch Movies</button>
         <ul>{mealsList}</ul>
       </Card>
     </section>
